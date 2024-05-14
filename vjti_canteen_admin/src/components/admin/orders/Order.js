@@ -29,7 +29,7 @@ const Order = ({ order }) => {
   };
 
   return (
-    <div className="w-[300px] shadow-lg bg-white p-6 rounded-lg m-3">
+    <div className="w-[250px] shadow-lg bg-white m-3 p-3 rounded-lg">
       <div className="text-sm font-semibold border-b-[2px] border-slate-200 pb-3">
         {order.email}
       </div>

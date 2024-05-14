@@ -1,6 +1,5 @@
 import { IoFastFoodSharp, IoAddCircleSharp } from 'react-icons/io5';
 import {
-  FaPenSquare,
   FaClock,
   FaHistory,
   FaUsers,
