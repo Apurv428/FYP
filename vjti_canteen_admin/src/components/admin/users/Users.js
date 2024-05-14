@@ -37,7 +37,7 @@ const Users = () => {
           required
           type="text"
           placeholder="Search..."
-          className="border border-slate-300 rounded-md outline-none text-sm shadow-sm px-3 py-2 placeholder-slate-400 w-72 fixed"
+          className="border border-slate-300 rounded-md outline-none text-sm shadow-sm px-3 py-2 placeholder-slate-400 w-72"
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
         />
       </div>
