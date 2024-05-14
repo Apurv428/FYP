@@ -36,7 +36,7 @@ const Menus = () => {
     if (selectedCategory === 'All') {
       return true;
     } else {
-      return menu.type === selectedCategory;
+      return menu.foodcategory === selectedCategory;
     }
   };
 
