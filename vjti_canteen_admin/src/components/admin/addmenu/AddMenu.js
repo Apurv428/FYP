@@ -41,7 +41,7 @@ const AddMenu = () => {
 
   return (
     <div className="flex justify-center mt-5">
-      <div className="bg-white rounded-lg shadow-md p-5" style={{ width: '800px', marginLeft: '200px' }}>
+      <div className="bg-white rounded-lg shadow-md p-5" style={{ width: '800px', marginLeft: '100px' }}>
         <h2 className="font-semibold mb-4 text-center">Add Menu</h2>
         <form onSubmit={handleSubmit} className="w-full">
           <div className="mb-4">

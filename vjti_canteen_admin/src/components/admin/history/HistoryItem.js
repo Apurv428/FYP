@@ -29,10 +29,7 @@ const HistoryItem = ({ order }) => {
   };
 
   return (
-    <div className="w-[300px] shadow-lg bg-white p-6 rounded-lg m-3">
-      <div className="text-sm font-semibold border-b-[2px] border-slate-200 pb-3">
-        {order.email}
-      </div>
+    <div className="w-[250px] shadow-lg bg-white p-6 rounded-lg m-3">
       <div className="text-sm font-semibold mt-3">Order #{order.id}</div>
       <p>{order.timestamp}</p>
 
@@ -47,7 +44,7 @@ const HistoryItem = ({ order }) => {
       </div>
 
       <div className="flex items-center justify-between mt-5">
-        <div className="text-sm font-bold text-slate-900">
+        <div className="text-sm font-bold text-slate-900 mr-2">
           Total: Rs. {order.price}
         </div>
 

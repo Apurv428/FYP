@@ -4,8 +4,6 @@ import {
   FaClock,
   FaHistory,
   FaUsers,
-  FaStar,
-  FaUserLock,
 } from 'react-icons/fa';
 import { useAppSelector } from '../redux/hook';
 

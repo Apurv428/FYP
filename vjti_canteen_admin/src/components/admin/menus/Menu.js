@@ -48,7 +48,7 @@ const Menu = ({ menu }) => {
   };
 
   return (
-    <div className="shadow-xl p-5 w-60 rounded-lg m-3 relative">
+    <div className="shadow-xl p-5 w-50 rounded-lg m-3 relative">
       <LazyLoadImage
         src={previewImage}
         alt={`${menu.name}_image`}
