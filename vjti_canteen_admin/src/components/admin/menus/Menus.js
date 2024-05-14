@@ -21,10 +21,10 @@ const Menus = () => {
       querySnapshot.forEach((doc) => {
         tempMenus.push({
           id: doc.id,
-          image: doc.data().foodimage,
-          name: doc.data().foodtitle,
-          price: doc.data().foodprice,
-          type: doc.data().foodcategory,
+          foodimage: doc.data().foodimage,
+          foodtitle: doc.data().foodtitle,
+          foodprice: doc.data().foodprice,
+          foodcategory: doc.data().foodcategory,
         });
       });
 
@@ -70,7 +70,7 @@ const Menus = () => {
       </div>
       <div className="flex flex-wrap mt-5">
         {menus
-          .filter((menu) => menu.name.toLocaleLowerCase().includes(search.toLowerCase()))
+          .filter((menu) => menu.foodtitle.toLocaleLowerCase().includes(search.toLowerCase()))
           .filter(filterMenusByCategory)
           .map((menu) => (
             <Menu key={menu.id} menu={menu} />
