@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { FaPen, FaTimes ,FaTrash} from 'react-icons/fa';
-import { collection, updateDoc,deleteDoc } from 'firebase/firestore';
+import { FaPen, FaTimes, FaTrash } from 'react-icons/fa';
+import { collection, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../../firebase';
 
 const Menu = ({ menu }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editedMenu, setEditedMenu] = useState(menu);
-  const [previewImage, setPreviewImage] = useState(menu.image);
+  const [previewImage, setPreviewImage] = useState(menu.foodimage);
   const [showPreview, setShowPreview] = useState(false);
 
   const openModal = () => {
@@ -34,16 +34,18 @@ const Menu = ({ menu }) => {
   };
 
   const handleSubmit = async () => {
-    const menuRef = collection(db, 'Food').doc(menu.id);
+    if (!menu.id) {
+      console.error('menu.id is not defined');
+      return;
+    }
+    const menuRef = doc(db, 'Food', menu.id);
     await updateDoc(menuRef, editedMenu);
-    console.log('Menu updated successfully:', editedMenu);
     closeModal();
   };
 
   const handleDelete = async () => {
-    const menuRef = collection(db, 'Food').doc(menu.id);
+    const menuRef = doc(db, 'Food', menu.id);
     await deleteDoc(menuRef);
-    console.log('Menu deleted successfully:', menu);
     closeModal();
   };
 
@@ -51,15 +53,15 @@ const Menu = ({ menu }) => {
     <div className="shadow-xl p-5 w-50 rounded-lg m-3 relative">
       <LazyLoadImage
         src={previewImage}
-        alt={`${menu.name}_image`}
+        alt={`${menu.foodtitle}_image`}
         className="mb-3 rounded-lg w-[200px] h-[133.2px] object-cover"
         width={200}
         height={133.2}
       />
       <div className="flex justify-between items-center">
         <div>
-          <div className="text-sm text-slate-700 font-medium">{menu.name}</div>
-          <p className="text-sm text-slate-600 font-semibold">Rs. {menu.price}</p>
+          <div className="text-sm text-slate-700 font-medium">{menu.foodtitle}</div>
+          <p className="text-sm text-slate-600 font-semibold">Rs. {menu.foodprice}</p>
         </div>
         <FaPen color='black' className="cursor-pointer" onClick={openModal} />
         <FaTrash color='red' className="cursor-pointer ml-1" onClick={handleDelete} />
@@ -76,9 +78,9 @@ const Menu = ({ menu }) => {
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={editedMenu.name}
+              id="foodtitle"
+              name="foodtitle"
+              value={editedMenu.foodtitle}
               onChange={handleInputChange}
               placeholder="Menu Name"
               className="border border-gray-300 rounded-md p-2 mb-4 w-full"
@@ -88,9 +90,9 @@ const Menu = ({ menu }) => {
             </label>
             <input
               type="number"
-              id="price"
-              name="price"
-              value={editedMenu.price}
+              id="foodprice"
+              name="foodprice"
+              value={editedMenu.foodprice}
               onChange={handleInputChange}
               placeholder="Price"
               className="border border-gray-300 rounded-md p-2 mb-4 w-full"
@@ -100,9 +102,9 @@ const Menu = ({ menu }) => {
             </label>
             <input
               type="text"
-              id="category"
-              name="category"
-              value={editedMenu.type}
+              id="foodcategory"
+              name="foodcategory"
+              value={editedMenu.foodcategory}
               onChange={handleInputChange}
               placeholder="Category"
               className="border border-gray-300 rounded-md p-2 mb-4 w-full"
@@ -112,9 +114,9 @@ const Menu = ({ menu }) => {
             </label>
             <input
               type="text"
-              id="image_url"
-              name="image_url"
-              value={editedMenu.image}
+              id="foodimage"
+              name="foodimage"
+              value={editedMenu.foodimage}
               onChange={handleImageChange}
               placeholder="Image URL"
               className="border border-gray-300 rounded-md p-2 mb-4 w-full"
