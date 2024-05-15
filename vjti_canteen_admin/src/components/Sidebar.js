@@ -16,7 +16,7 @@ const options = [
   'All Users',
 ];
 
-const restricted = [true, true, true, true, true];
+const restricted = [true, true, true, true, true, true];
 
 const icons = [
   IoFastFoodSharp,
