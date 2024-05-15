@@ -108,6 +108,7 @@ class _LunchState extends State<Lunch> {
                 if (snapshot.hasData) {
                   _lunchList = snapshot.data!.docs
                       .where((document) => document["foodcategory"] == "Lunch")
+                      .where((document) => document["available"] == true)
                       .map((document) => Item(
                             image: document["foodimage"],
                             title: document["foodtitle"],

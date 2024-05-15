@@ -107,6 +107,7 @@ class _AllItemsState extends State<AllItems> {
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasData) {
                   _allItemsList = snapshot.data!.docs
+                      .where((document) => document["available"] == true)
                       .map((document) => Item(
                             image: document["foodimage"],
                             title: document["foodtitle"],

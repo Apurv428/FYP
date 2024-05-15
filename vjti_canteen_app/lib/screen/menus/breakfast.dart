@@ -109,6 +109,7 @@ class _BreakfastState extends State<Breakfast> {
                   _breakfastList = snapshot.data!.docs
                       .where(
                           (document) => document["foodcategory"] == "Breakfast")
+                      .where((document) => document["available"] == true)
                       .map((document) => Item(
                             image: document["foodimage"],
                             title: document["foodtitle"],

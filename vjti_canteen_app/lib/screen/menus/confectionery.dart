@@ -109,6 +109,7 @@ class _ConfectioneryState extends State<Confectionery> {
                   _confectioneryList = snapshot.data!.docs
                       .where((document) =>
                           document["foodcategory"] == "Confectionery")
+                      .where((document) => document["available"] == true)
                       .map((document) => Item(
                             image: document["foodimage"],
                             title: document["foodtitle"],
