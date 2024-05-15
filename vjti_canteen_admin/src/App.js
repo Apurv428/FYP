@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { setAdmin } from './redux/admin/adminSlice';
 import { useAppSelector } from './redux/hook';
+import MenusUnavailable from './components/admin/unavailable/Menus';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
           <div className="px-8 py-8 ml-[280px] mt-[80px]">
             {active === 'Menus' && <Menus />}
             {active === 'Add Menu' && <AddMenu />}
+            {active === 'Unavailable Items' && <MenusUnavailable />}
             {active === 'Orders' && <Orders />}
             {active === 'History' && <History />}
             {active === 'All Users' && <Users />}

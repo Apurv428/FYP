@@ -3,12 +3,14 @@ import {
   FaClock,
   FaHistory,
   FaUsers,
+  FaBan
 } from 'react-icons/fa';
 import { useAppSelector } from '../redux/hook';
 
 const options = [
   'Menus',
   'Add Menu',
+  'Unavailable Items',
   'Orders',
   'History',
   'All Users',
@@ -19,6 +21,7 @@ const restricted = [true, true, true, true, true];
 const icons = [
   IoFastFoodSharp,
   IoAddCircleSharp,
+  FaBan,
   FaClock,
   FaHistory,
   FaUsers

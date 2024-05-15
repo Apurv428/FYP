@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
-import Menu from './Menu';
+import MenuUnavailable from './Menu';
 
-const Menus = () => {
+const MenusUnavailable = () => {
   const [menus, setMenus] = useState([]);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -16,8 +16,10 @@ const Menus = () => {
     let menusReference = collection(db, 'Food');
     menusReference = query(
       menusReference,
-      where('available', '==', true)
+      where('available', '==', false)
     );
+
+    console.log(menusReference)
 
     onSnapshot(menusReference, (querySnapshot) => {
       let tempMenus = [];
@@ -47,7 +49,7 @@ const Menus = () => {
   return (
     <div>
       <div className="mt-5 mx-auto">
-        <div className="text-xl font-medium text-center text-uppercase">Menus</div>
+        <div className="text-xl font-medium text-center text-uppercase">Unavailable Menu Items</div>
         <div className="flex justify-center my-5">
           <input
             required
@@ -77,11 +79,11 @@ const Menus = () => {
           .filter((menu) => menu.foodtitle.toLocaleLowerCase().includes(search.toLowerCase()))
           .filter(filterMenusByCategory)
           .map((menu) => (
-            <Menu key={menu.id} menu={menu} />
+            <MenuUnavailable key={menu.id} menu={menu} />
           ))}
       </div>
     </div>
   );
 };
 
-export default Menus;
+export default MenusUnavailable;

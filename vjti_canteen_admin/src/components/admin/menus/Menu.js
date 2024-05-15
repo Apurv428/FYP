@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FaPen, FaTimes, FaTrash } from 'react-icons/fa';
-import { collection, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../../firebase';
 
 const Menu = ({ menu }) => {
@@ -9,6 +9,14 @@ const Menu = ({ menu }) => {
   const [editedMenu, setEditedMenu] = useState(menu);
   const [previewImage, setPreviewImage] = useState(menu.foodimage);
   const [showPreview, setShowPreview] = useState(false);
+
+  const handleUnavailability = () => {
+    const menusReference = doc(db, 'Food', menu.id);
+
+    updateDoc(menusReference, {
+      available: false,
+    })
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -65,6 +73,11 @@ const Menu = ({ menu }) => {
         </div>
         <FaPen color='black' className="cursor-pointer" onClick={openModal} />
         <FaTrash color='red' className="cursor-pointer ml-1" onClick={handleDelete} />
+      </div>
+      <div className="flex justify-center items-center mt-2">
+        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm" onClick={handleUnavailability}>
+          Not Available
+        </button>
       </div>
       {isModalOpen && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
